@@ -1,0 +1,14 @@
+struct HomeView: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("Welcome!")
+                .font(.largeTitle)
+                .bold()
+            Text("You are now signed in.")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+        .navigationTitle("Home")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
