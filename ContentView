@@ -1,0 +1,26 @@
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        NavigationStack {
+            VStack {
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50)
+
+                Text("Hello, Welcome to GUIDE TO WLV!")
+            }
+            .padding()
+
+            NavigationLink("Login") {
+                LoginView()
+            }
+
+            NavigationLink("Register") {
+                RegisterView()
+            }
+            .padding()
+        }
+    }
+}
