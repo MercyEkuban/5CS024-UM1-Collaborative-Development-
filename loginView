@@ -1,0 +1,41 @@
+struct LoginView: View {
+    @State private var email = ""
+    @State private var password = ""
+    @State private var navigateToHome = false
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("Login").font(.title).bold()
+
+            TextField("Email", text: $email)
+                .textContentType(.username)
+                .keyboardType(.emailAddress)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+                .padding(12)
+                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
+
+            SecureField("Password", text: $password)
+                .textContentType(.password)
+                .padding(12)
+                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
+
+            Button("Sign In") {
+                // TODO: Replace with real auth. On success:
+                navigateToHome = true
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 12))
+            .foregroundStyle(.white)
+
+            Spacer()
+        }
+        .padding()
+        .navigationTitle("Login")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(isPresented: $navigateToHome) {
+            HomeView()
+        }
+    }
+}
