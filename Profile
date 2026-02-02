@@ -1,0 +1,44 @@
+struct ProfileView: View {
+    @State private var profile: UserProfile?
+
+    var body: some View {
+        Group {
+            if let profile {
+                List {
+                    LabeledContent("Name", value: profile.fullName)
+                    LabeledContent("Email", value: profile.email)
+                    if let program = profile.program, !program.isEmpty {
+                        LabeledContent("Program", value: program)
+                    }
+                    if let year = profile.yearOfStudy, !year.isEmpty {
+                        LabeledContent("Year of Study", value: year)
+                    }
+                    if let bio = profile.bio, !bio.isEmpty {
+                        Section("Bio") {
+                            Text(bio)
+                        }
+                    }
+                }
+            } else {
+                VStack(spacing: 12) {
+                    Image(systemName: "person.crop.circle.badge.questionmark")
+                        .font(.system(size: 64))
+                        .foregroundStyle(.secondary)
+                    Text("No Profile Found")
+                        .font(.title2)
+                        .bold()
+                    Text("Create or update your profile to see your information here.")
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                .padding()
+            }
+        }
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            profile = UserProfileStore.load()
+        }
+    }
+}
