@@ -1,0 +1,50 @@
+struct AboutView: View {
+    @State private var showProfile = false
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("About Us")
+                    .font(.largeTitle)
+                    .bold()
+
+                Text("GUIDE TO WLV helps students and visitors find their way around, discover services, and make the most of their time at the University of Wolverhampton. Our mission is to provide clear, friendly guidance and tips to help you feel confident navigating campus life.")
+                    .foregroundStyle(.secondary)
+                Text("Team Members")
+                    .font(.largeTitle)
+                    .bold()
+                
+                Text("Project Manager: Hisham champan yunusah")
+                    .bold()
+                Text("Bussiness Analyst: Ty McCallum")
+                    .bold()
+                Text("Data Analyst: Benedict Zolana")
+                    .bold()
+                Text("Software Developer: Mercy Ekuban")
+                    .bold()
+                Text("Security Consultant: Lawrence Kwame Anim")
+                
+                
+            }
+            .padding()
+        }
+        .navigationTitle("About Us")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button("Profile") { showProfile = true }
+                    Button("Rewards") { /* action 2 */ }
+                    Button("Settings") { /* action 3 */ }
+                    Button("logout") { /* action 3 */ }
+                    
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+            }
+        }
+        .navigationDestination(isPresented: $showProfile) {
+            ProfileView()
+        }
+    }
+}
